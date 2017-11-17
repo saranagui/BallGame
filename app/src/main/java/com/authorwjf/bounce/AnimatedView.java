@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.CountDownTimer;
@@ -42,21 +43,24 @@ public class AnimatedView extends ImageView{
 	//x, y of the box
 	int boxX = -1;
 	int boxY = -1;
-	int scale = -1;
 	int won = 0;
+	boolean animateBox=false;
+	//counter
+	int i=1;
 
 	//for the countdown
 	int count=3000;
 
 	private Handler h;
 	private final int FRAME_RATE = 60;
-	
+	AlertDialog alertDialog;
 	
 	public AnimatedView(Context context, AttributeSet attrs)  {  
 		super(context, attrs);  
 		mContext = context;  
 		h = new Handler();
-    } 
+		alertDialog = new AlertDialog.Builder(mContext).create();
+	}
 	
 	private Runnable r = new Runnable() {
 		@Override
@@ -73,8 +77,6 @@ public class AnimatedView extends ImageView{
 		BitmapDrawable ball = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.ball);  
 	    BitmapDrawable line = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bar);
 		BitmapDrawable box  = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.box);
-
-		AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
 
 
 		//for the box animation
@@ -98,12 +100,9 @@ public class AnimatedView extends ImageView{
 
 		//won = 0 -> still playing, won = 1 -> player won, won = 2 -> player lost
 		switch(won){
-			//bitmapResized = Bitmap.createScaledBitmap(b, (box.getBitmap().getWidth()-1), (box.getBitmap().getWidth()-1), false);
-			//box = new BitmapDrawable(getResources(), bitmapResized);
-			//boxX++;
-			//boxY++;
 			case 1:	won = -1;
 					box.setBounds(boxX, boxY, 1, 1);
+					animateBox=true;
 					invalidate();
 					alertDialog.setTitle("Congratulations");
 					alertDialog.setMessage("YOU WON!");
@@ -136,13 +135,9 @@ public class AnimatedView extends ImageView{
 			lineY = this.getHeight()*7/8 - line.getBitmap().getHeight()/2;
 		}
 		//initialization of the position of the goal box
-		if(boxX<0 && boxY<0){
-			boxX = this.getWidth()/2 - box.getBitmap().getWidth()/2;
-			boxY = this.getHeight()/8 - box.getBitmap().getHeight()/2;
-		}
-		//initialization of the position of the scaling of the goal box (should be used for animation)
-		if(scale<0){
-			scale = box.getBitmap().getWidth();
+		if(boxX<0 && boxY<0) {
+			boxX = this.getWidth() / 2 - box.getBitmap().getWidth() / 2;
+			boxY = this.getHeight() / 8 - box.getBitmap().getHeight() / 2;
 		}
 		//initialization of the position of the ball
 		if (x<0 && y <0) {
@@ -177,9 +172,27 @@ public class AnimatedView extends ImageView{
 			}
 
 	    }
+		if(animateBox){
+			if(i >= box.getBitmap().getWidth()){
+				i=1;
+				boxX = this.getWidth()/2 - box.getBitmap().getWidth()/2;
+				boxY = this.getHeight()/8 - box.getBitmap().getHeight()/2;
+			}
+			bitmapResized = Bitmap.createScaledBitmap(b, (box.getBitmap().getWidth()-i), (box.getBitmap().getWidth()-i), false);
+			box = new BitmapDrawable(getResources(), bitmapResized);
+			i++;
+			boxX++;
+			boxY++;
+			Matrix matrix = new Matrix();
+			matrix.postRotate(i,box.getBitmap().getWidth()/2,box.getBitmap().getHeight()/2);
+			matrix.postTranslate(boxX, boxY);
+			c.drawBitmap(box.getBitmap(), matrix, new Paint());
+		}
+		else{
+			c.drawBitmap(box.getBitmap(), boxX, boxY, null);
+		}
 
 	    //draw everything on canvas
-		c.drawBitmap(box.getBitmap(), boxX, boxY, null);
 		c.drawBitmap(ball.getBitmap(), x, y, null);
 		c.drawBitmap(line.getBitmap(), lineX, lineY, null);
 
