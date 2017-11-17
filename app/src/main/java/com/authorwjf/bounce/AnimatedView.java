@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -26,7 +27,6 @@ import org.w3c.dom.Text;
 import org.w3c.dom.UserDataHandler;
 
 public class AnimatedView extends ImageView{
-	Canvas mC;
 	private Context mContext;
 
 	//x, y of the ball
@@ -45,8 +45,11 @@ public class AnimatedView extends ImageView{
 	int scale = -1;
 	int won = 0;
 
+	//for the countdown
+	int count=3000;
+
 	private Handler h;
-	private final int FRAME_RATE = 30;
+	private final int FRAME_RATE = 60;
 	
 	
 	public AnimatedView(Context context, AttributeSet attrs)  {  
@@ -64,41 +67,57 @@ public class AnimatedView extends ImageView{
 	
 	protected void onDraw(final Canvas c) {
 
-		  mC= c;
 		final int canvasWidth = this.getWidth();
 		final int canvasHeight = this.getHeight();
+
 		BitmapDrawable ball = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.ball);  
 	    BitmapDrawable line = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.bar);
 		BitmapDrawable box  = (BitmapDrawable) mContext.getResources().getDrawable(R.drawable.box);
+
+		AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+
+
+		//for the box animation
 		Bitmap b = box.getBitmap();
 		Bitmap bitmapResized;
 
+		//text style of the countdown
 		final Paint paint = new Paint();
 		paint.setStyle(Paint.Style.FILL);
-		mC.drawPaint(paint);
+		paint.setColor(Color.BLACK);
+		c.drawPaint(paint);
+		paint.setTextSize(400);
+		paint.setColor(Color.GRAY);
 
-		paint.setColor(Color.WHITE);
-		paint.setTextSize(200);
-		//final TextView mText = new TextView(mContext);
+		//the countdown
+		c.drawText(""+(count/100), canvasWidth/2-200, canvasHeight/2, paint);
+		count--;
+		if(count==0){
+			won=2;
+		}
 
-		//CountDownTimer myTimer =
-
-		//c.drawText(mText.getText().toString(), this.getWidth()/2 - mText.getText().length()/2, this.getHeight()/2 - 100, paint);
-
-//		String mString = "";
-//		for(int i=30; i>=0;i--){
-//			mString = ""+i;
-//		}
-//		c.drawText(mString, this.getWidth()/2 - 100, this.getHeight()/2 - 100, paint);
+		//won = 0 -> still playing, won = 1 -> player won, won = 2 -> player lost
 		switch(won){
 			//bitmapResized = Bitmap.createScaledBitmap(b, (box.getBitmap().getWidth()-1), (box.getBitmap().getWidth()-1), false);
 			//box = new BitmapDrawable(getResources(), bitmapResized);
 			//boxX++;
 			//boxY++;
-			case 1:	box.setBounds(boxX, boxY, 1, 1);
+			case 1:	won = -1;
+					box.setBounds(boxX, boxY, 1, 1);
 					invalidate();
-					break;
-			case 2: AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+					alertDialog.setTitle("Congratulations");
+					alertDialog.setMessage("YOU WON!");
+					alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									dialog.dismiss();
+								}
+							});
+					alertDialog.show();
+
+					invalidate();
+					return;
+			case 2: won = -1;
 					alertDialog.setTitle("Hard Luck!");
 					alertDialog.setMessage("YOU LOST :(");
 					alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -111,50 +130,43 @@ public class AnimatedView extends ImageView{
 					invalidate();
 					return;
 		}
+		//initialization of the position of the bar
 		if(lineX<0 && lineY<0){
 	    	lineX = this.getWidth()/2 - line.getBitmap().getWidth()/2;
 			lineY = this.getHeight()*7/8 - line.getBitmap().getHeight()/2;
 		}
+		//initialization of the position of the goal box
 		if(boxX<0 && boxY<0){
 			boxX = this.getWidth()/2 - box.getBitmap().getWidth()/2;
 			boxY = this.getHeight()/8 - box.getBitmap().getHeight()/2;
 		}
+		//initialization of the position of the scaling of the goal box (should be used for animation)
 		if(scale<0){
 			scale = box.getBitmap().getWidth();
 		}
-	    if (x<0 && y <0) {
+		//initialization of the position of the ball
+		if (x<0 && y <0) {
 	    	x = this.getWidth()/2;
 	    	y = this.getHeight()/2;
-	    } else {
+	    }
+	    //movement of the ball
+	    else {
 	    	x += xVelocity;
 	    	y += yVelocity;
+	    	//ball hits the bar
 			if ((x > lineX - ball.getBitmap().getWidth()) && (x < (lineX+200)) && (y > lineY - ball.getBitmap().getHeight()) && (y < lineY)) {
 				xVelocity = xVelocity*-1;
 				yVelocity = yVelocity*-1;
 
 				invalidate();
 			}
-
+			//ball hits the target box and player wins
 			if ((x > boxX - ball.getBitmap().getWidth()) && (x < (boxX+100)) && (y > boxY - ball.getBitmap().getHeight()) && (y < boxY)) {
 				won = 1;
 				xVelocity = xVelocity*-1;
 				yVelocity = yVelocity*-1;
-
-				AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
-				alertDialog.setTitle("Congratulations");
-				alertDialog.setMessage("YOU WON!");
-				alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								dialog.dismiss();
-							}
-						});
-				alertDialog.show();
-
-				invalidate();
-				return;
 			}
-
+			//ball out of window bounds
 	    	if ((x > this.getWidth() - ball.getBitmap().getWidth()) || (x < 0)) {
 				xVelocity = xVelocity * -1;
 				invalidate();
@@ -166,20 +178,12 @@ public class AnimatedView extends ImageView{
 
 	    }
 
-	    c.drawBitmap(ball.getBitmap(), x, y, null);
-		c.drawBitmap(line.getBitmap(), lineX, lineY, null);
+	    //draw everything on canvas
 		c.drawBitmap(box.getBitmap(), boxX, boxY, null);
-		new CountDownTimer(30000, 1000) {
+		c.drawBitmap(ball.getBitmap(), x, y, null);
+		c.drawBitmap(line.getBitmap(), lineX, lineY, null);
 
-			public void onTick(long millisUntilFinished) {
-				c.drawText(""+(millisUntilFinished / 1000), 100, 100, paint);
-			}
-			public void onFinish() {
 
-				won=2;
-
-			}
-		}.start();
 		h.postDelayed(r, FRAME_RATE);
 
 	    	      
@@ -188,6 +192,7 @@ public class AnimatedView extends ImageView{
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
+		//when bar is pressed, move it left and right according to the movement of the mouse or touch
 		if(event.getAction() == MotionEvent.ACTION_DOWN){
 			int mouseX = (int)event.getX();
 			int mouseY = (int)event.getY();
