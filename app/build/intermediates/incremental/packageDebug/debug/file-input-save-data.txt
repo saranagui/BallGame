@@ -1,0 +1,36 @@
+#Internal package file, do not edit.
+#Wed Nov 15 02:44:57 CET 2017
+2.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+5.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-xhdpi-v4/ic_launcher.png
+5.set=ANDROID_RESOURCE
+3.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+6.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-hdpi-v4/box.jpg
+2.set=ANDROID_RESOURCE
+10.set=ANDROID_RESOURCE
+10.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/layout/main.xml
+4.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+7.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/AndroidManifest.xml
+7.set=ANDROID_RESOURCE
+count=11
+0.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex
+5.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+8.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/menu-v11/main.xml
+4.set=ANDROID_RESOURCE
+6.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+1.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-xhdpi-v4/ic_action_search.png
+9.set=ANDROID_RESOURCE
+9.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-hdpi-v4/bar.png
+10.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+1.set=ANDROID_RESOURCE
+7.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+2.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/menu/main.xml
+6.set=ANDROID_RESOURCE
+0.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/transforms/dexMerger/debug/0
+8.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+3.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable/ball.png
+3.set=ANDROID_RESOURCE
+1.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+9.base=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_
+4.file=/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/debug/resources-debug.ap_/resources.arsc
+8.set=ANDROID_RESOURCE
+0.set=DEX

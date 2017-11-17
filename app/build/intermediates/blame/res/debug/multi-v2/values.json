@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "19",
+                        "endColumns": "58",
+                        "endOffsets": "73"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "258",
+                        "endColumns": "57",
+                        "endOffsets": "311"
+                    }
+                },
+                {
+                    "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "19,64,118,170",
+                        "endColumns": "43,52,50,54",
+                        "endOffsets": "58,112,164,220"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,99,152,203",
+                        "endColumns": "43,52,50,54",
+                        "endOffsets": "94,147,198,253"
+                    }
+                }
+            ]
+        }
+    ]
+}

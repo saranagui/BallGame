@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/menu_main.xml.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_action_search.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-mdpi/ic_action_search.png"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_launcher.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable_ball.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable/ball.png"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-hdpi_bar.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-hdpi/bar.png"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-hdpi_box.jpg.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-hdpi/box.jpg"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_launcher.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_action_search.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-hdpi/ic_action_search.png"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/layout_main.xml.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/layout/main.xml"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_action_search.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-xhdpi/ic_action_search.png"
+    },
+    {
+        "merged": "/home/sara/AndroidStudioProjects/bounce/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher.png.flat",
+        "source": "/home/sara/AndroidStudioProjects/bounce/app/src/main/res/drawable-mdpi/ic_launcher.png"
+    }
+]
